@@ -38,7 +38,7 @@ public final class JavaMailEmailSenderAdapter implements EmailSenderPort {
         try {
             final MimeMessage message = buildMessage(destination);
             Transport.send(message);
-            log.log(Level.INFO, SENDER_EMAIL_LOG, destination.getDestinationEmail());
+            log.log(Level.INFO, SENDER_EMAIL_LOG, destination.getDestinationEmail().value());
         } catch (final MessagingException | UnsupportedEncodingException exception) {
             throw EmailSenderException.becauseSmtpFailed(
                     destination.getDestinationEmail().value(), exception.getMessage());
