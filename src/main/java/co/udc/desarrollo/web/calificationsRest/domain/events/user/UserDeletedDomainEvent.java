@@ -1,6 +1,7 @@
 package co.udc.desarrollo.web.calificationsRest.domain.events.user;
 
 import co.udc.desarrollo.web.calificationsRest.domain.events.DomainEvent;
+import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserId;
 import lombok.Getter;
 
 import java.util.Map;

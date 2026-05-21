@@ -1,10 +1,13 @@
 package co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistence.config;
 
+import lombok.experimental.UtilityClass;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public  class DatabaseConnectionFactory {
+@UtilityClass
+public final class DatabaseConnectionFactory {
 
     public  Connection createConnection(final DatabaseConfig config) {
         try {
