@@ -1,18 +1,27 @@
 package co.udc.desarrollo.web.calificationsRest.infrastructure.config;
 
+import co.udc.desarrollo.web.calificationsRest.application.port.in.user.CreateUserUseCase;
+import co.udc.desarrollo.web.calificationsRest.application.port.in.user.DeleteUserUseCase;
+import co.udc.desarrollo.web.calificationsRest.application.port.in.user.GetAllUsersUseCase;
+import co.udc.desarrollo.web.calificationsRest.application.port.in.user.GetUserByIdUseCase;
 import co.udc.desarrollo.web.calificationsRest.application.port.in.auth.LoginUseCase;
-import co.udc.desarrollo.web.calificationsRest.application.port.in.user.*;
-import co.udc.desarrollo.web.calificationsRest.application.service.auth.LoginService;
+import co.udc.desarrollo.web.calificationsRest.application.port.in.user.UpdateUserUseCase;
+import co.udc.desarrollo.web.calificationsRest.application.service.user.CreateUserService;
+import co.udc.desarrollo.web.calificationsRest.application.service.user.DeleteUserService;
 import co.udc.desarrollo.web.calificationsRest.application.service.email.EmailNotificationService;
-import co.udc.desarrollo.web.calificationsRest.application.service.user.*;
+import co.udc.desarrollo.web.calificationsRest.application.service.user.GetAllUsersService;
+import co.udc.desarrollo.web.calificationsRest.application.service.user.GetUserByIdService;
+import co.udc.desarrollo.web.calificationsRest.application.service.auth.LoginService;
+import co.udc.desarrollo.web.calificationsRest.application.service.user.UpdateUserService;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.email.JavaMailEmailSenderAdapter;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.email.SmtpConfig;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistence.config.DatabaseConfig;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistence.config.DatabaseConnectionFactory;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistence.repository.UserRepositoryMySQL;
-import jakarta.validation.Validator;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.desktop.controller.UserController;
 
 import java.sql.Connection;
+import jakarta.validation.Validator;
 
 public final class DependencyContainer {
 
@@ -88,5 +97,4 @@ public final class DependencyContainer {
                 properties.get(SMTP_FROM),
                 properties.get(SMTP_FROM_NAME));
     }
-
 }
