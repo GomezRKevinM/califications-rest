@@ -6,6 +6,8 @@ import co.udc.desarrollo.web.calificationsRest.domain.models.EmailDestinationMod
 import co.udc.desarrollo.web.calificationsRest.domain.models.UserModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +17,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 
 @Log
+@Service
 @RequiredArgsConstructor
 public class EmailNotificationService {
     private static final String SUBJECT_CREATED = "Tu cuenta ha sido creada — Gestión de Usuarios";

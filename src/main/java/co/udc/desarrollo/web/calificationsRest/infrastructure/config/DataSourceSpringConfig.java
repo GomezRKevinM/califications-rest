@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @Slf4j
 @Configuration(proxyBeanMethods = false)
@@ -50,5 +52,11 @@ public class DataSourceSpringConfig {
 
         log.info(LOG_DATASOURCE_INIT, dbHost, dbPort);
         return new HikariDataSource(hikariConfig);
+    }
+
+    @Bean
+    public Connection connection(DataSource dataSource) throws SQLException {
+        // Devuelve una conexión desde el pool
+        return dataSource.getConnection();
     }
 }

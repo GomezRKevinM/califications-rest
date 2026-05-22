@@ -7,13 +7,16 @@ import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.java.Log;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.logging.Level;
 
 @Log
-public final class JavaMailEmailSenderAdapter implements EmailSenderPort {
+@Component
+public class JavaMailEmailSenderAdapter implements EmailSenderPort {
 
     private static final String MAIL_SMTP_HOST = "mail.smtp.host";
     private static final String MAIL_SMTP_PORT = "mail.smtp.port";

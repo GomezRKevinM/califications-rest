@@ -50,7 +50,9 @@ public class UserPersistenceMapper {
                 new UserEmail(entity.email()),
                 UserPassword.fromHash(entity.password()),
                 UserRole.fromString(entity.role()),
-                UserStatus.fromString(entity.status()));
+                UserStatus.fromString(entity.status()),
+                entity.createdAt(),
+                entity.updatedAt());
     }
 
     public UserModel fromResultSetToModel(final ResultSet resultSet) throws SQLException {
