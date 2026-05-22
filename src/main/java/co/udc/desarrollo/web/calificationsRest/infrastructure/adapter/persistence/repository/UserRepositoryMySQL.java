@@ -11,6 +11,7 @@ import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistenc
 import co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistence.mapper.UserPersistenceMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,8 +21,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Log
+@Repository
 @RequiredArgsConstructor
-public final class UserRepositoryMySQL implements SaveUserPort,
+public class UserRepositoryMySQL implements SaveUserPort,
         UpdateUserPort,
         GetUserByIdPort,
         GetUserByEmailPort,

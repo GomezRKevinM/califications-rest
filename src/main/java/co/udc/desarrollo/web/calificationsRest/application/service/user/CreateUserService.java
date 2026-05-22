@@ -14,12 +14,14 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Log
+@Service
 @RequiredArgsConstructor
-public final class CreateUserService implements CreateUserUseCase {
+public class CreateUserService implements CreateUserUseCase {
 
     private final SaveUserPort saveUserPort;
     private final GetUserByEmailPort getUserByEmailPort;
