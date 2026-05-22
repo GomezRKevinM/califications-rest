@@ -41,7 +41,7 @@ public class UserRestController {
         return ResponseEntity.ok(UserRestMapper.toResponse(user));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> create(@RequestBody @Valid CreateUserRequest request,
                                                UriComponentsBuilder uriBuilder) {
         var cmd = UserRestMapper.toCreateCommand(request);
