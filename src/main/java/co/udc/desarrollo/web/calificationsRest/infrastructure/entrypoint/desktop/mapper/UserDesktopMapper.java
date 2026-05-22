@@ -18,7 +18,7 @@ public class UserDesktopMapper {
 
     public static CreateUserCommand toCreateCommand(final CreateUserRequest request) {
         return new CreateUserCommand(
-                request.id(), request.name(), request.email(), request.password(), request.role());
+                request.name(), request.email(), request.password(), request.role());
     }
 
     public static UpdateUserCommand toUpdateCommand(final UpdateUserRequest request) {

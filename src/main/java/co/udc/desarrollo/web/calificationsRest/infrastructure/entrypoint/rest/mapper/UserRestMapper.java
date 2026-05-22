@@ -16,7 +16,7 @@ import lombok.experimental.UtilityClass;
 public class UserRestMapper {
 
     public CreateUserCommand toCreateCommand(final CreateUserRequest r) {
-        return new CreateUserCommand(r.id(), r.name(), r.email(), r.password(), r.role());
+        return new CreateUserCommand(r.name(), r.email(), r.password(), r.role());
     }
 
     public UpdateUserCommand toUpdateCommand(final String id, final UpdateUserRequest r) {

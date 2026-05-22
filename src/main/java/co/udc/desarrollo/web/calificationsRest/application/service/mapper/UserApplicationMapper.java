@@ -14,13 +14,14 @@ import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserPass
 import lombok.experimental.UtilityClass;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @UtilityClass
 public class UserApplicationMapper {
 
     public UserModel fromCreateCommandToModel(final CreateUserCommand command) {
         return UserModel.create(
-                new UserId(command.id()),
+                new UserId(UUID.randomUUID().toString()),
                 new UserName(command.name()),
                 new UserEmail(command.email()),
                 UserPassword.fromPlainText(command.password()),

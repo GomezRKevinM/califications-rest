@@ -17,7 +17,6 @@ public final class CreateUserHandler implements OperationHandler {
 
     @Override
     public void handle() {
-        final String id       = console.readRequired("ID                              : ");
         final String name     = console.readRequired("Name                            : ");
         final String email    = console.readRequired("Email                           : ");
         final String password = console.readRequired("Password                        : ");
@@ -25,7 +24,7 @@ public final class CreateUserHandler implements OperationHandler {
 
         try {
             final UserResponse created =
-                    userController.createUser(new CreateUserRequest(id, name, email, password, role));
+                    userController.createUser(new CreateUserRequest(name, email, password, role));
             console.println("\n  Usuario creado correctamente.");
             printer.print(created);
         } catch (final UserAlreadyExistsException exception) {

@@ -100,7 +100,6 @@ public class EmailNotificationService {
                     Level.WARNING,
                     "[EmailNotificationService] No se pudo enviar correo a: {0}. Causa: {1}",
                     new Object[] {destination.getDestinationEmail(), senderException.getMessage()});
-            throw senderException;
         }
     }
 
