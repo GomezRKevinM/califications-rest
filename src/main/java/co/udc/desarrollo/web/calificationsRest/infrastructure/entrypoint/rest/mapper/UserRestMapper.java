@@ -5,8 +5,10 @@ import co.udc.desarrollo.web.calificationsRest.application.service.dto.command.u
 import co.udc.desarrollo.web.calificationsRest.application.service.dto.command.user.DeleteUserCommand;
 import co.udc.desarrollo.web.calificationsRest.application.service.dto.command.user.UpdateUserCommand;
 import co.udc.desarrollo.web.calificationsRest.application.service.dto.query.GetUserByIdQuery;
+import co.udc.desarrollo.web.calificationsRest.application.service.dto.result.user.DeleteUserResult;
 import co.udc.desarrollo.web.calificationsRest.domain.models.UserModel;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.CreateUserRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.DeleteUserResponse;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.LoginRequest;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UpdateUserRequest;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UserResponse;
@@ -33,6 +35,10 @@ public class UserRestMapper {
 
     public LoginCommand toLoginCommand(final LoginRequest r) {
         return new LoginCommand(r.email(), r.password());
+    }
+
+    public DeleteUserResponse toDeleteResponse(final DeleteUserResult result) {
+        return new DeleteUserResponse(result.deleted(), result.code(), result.message());
     }
 
     /**
