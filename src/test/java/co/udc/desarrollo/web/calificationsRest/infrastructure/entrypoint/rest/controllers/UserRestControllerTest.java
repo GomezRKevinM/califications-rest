@@ -6,6 +6,7 @@ import co.udc.desarrollo.web.calificationsRest.application.port.in.user.DeleteUs
 import co.udc.desarrollo.web.calificationsRest.application.port.in.user.GetAllUsersUseCase;
 import co.udc.desarrollo.web.calificationsRest.application.port.in.user.GetUserByIdUseCase;
 import co.udc.desarrollo.web.calificationsRest.application.port.in.user.UpdateUserUseCase;
+import co.udc.desarrollo.web.calificationsRest.application.service.dto.result.user.DeleteUserResult;
 import co.udc.desarrollo.web.calificationsRest.domain.enums.user.UserRole;
 import co.udc.desarrollo.web.calificationsRest.domain.enums.user.UserStatus;
 import co.udc.desarrollo.web.calificationsRest.domain.models.UserModel;
@@ -117,9 +118,24 @@ class UserRestControllerTest {
     }
 
     @Test
-    void deleteUsesDeleteApiUsersIdAndReturnsNoContent() throws Exception {
+    void deleteUsesDeleteApiUsersIdAndReturnsNoContentWhenDeleted() throws Exception {
+        when(deleteUserUseCase.execute(any())).thenReturn(DeleteUserResult.deleted("user-1"));
+
         mockMvc.perform(delete("/api/users/user-1"))
                 .andExpect(status().isNoContent());
+
+        verify(deleteUserUseCase).execute(any());
+    }
+
+    @Test
+    void deleteUsesDeleteApiUsersIdAndReturnsMessageWhenUserWasNotFound() throws Exception {
+        when(deleteUserUseCase.execute(any())).thenReturn(DeleteUserResult.notFound("user-1"));
+
+        mockMvc.perform(delete("/api/users/user-1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.deleted").value(false))
+                .andExpect(jsonPath("$.code").value("USER_NOT_FOUND"))
+                .andExpect(jsonPath("$.message").value("El usuario con id 'user-1' no existe o ya fue eliminado."));
 
         verify(deleteUserUseCase).execute(any());
     }

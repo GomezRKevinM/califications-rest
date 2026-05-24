@@ -3,6 +3,7 @@ package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.c
 import co.udc.desarrollo.web.calificationsRest.application.port.in.auth.LoginUseCase;
 import co.udc.desarrollo.web.calificationsRest.application.port.in.user.*;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.CreateUserRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.DeleteUserResponse;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.LoginRequest;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UpdateUserRequest;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UserResponse;
@@ -61,10 +62,13 @@ public class UserRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
+    public ResponseEntity<DeleteUserResponse> delete(@PathVariable String id) {
         var cmd = UserRestMapper.toDeleteCommand(id);
-        deleteUserUseCase.execute(cmd);
-        return ResponseEntity.noContent().build();
+        var result = deleteUserUseCase.execute(cmd);
+        if (result.deleted()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(UserRestMapper.toDeleteResponse(result));
     }
 
     @PostMapping("/login")

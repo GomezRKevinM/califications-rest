@@ -3,6 +3,7 @@ package co.udc.desarrollo.web.calificationsRest.application.service.user;
 import co.udc.desarrollo.web.calificationsRest.application.port.out.user.DeleteUserPort;
 import co.udc.desarrollo.web.calificationsRest.application.port.out.user.GetUserByIdPort;
 import co.udc.desarrollo.web.calificationsRest.application.service.dto.command.user.DeleteUserCommand;
+import co.udc.desarrollo.web.calificationsRest.application.service.email.EmailNotificationService;
 import co.udc.desarrollo.web.calificationsRest.domain.enums.user.UserRole;
 import co.udc.desarrollo.web.calificationsRest.domain.enums.user.UserStatus;
 import co.udc.desarrollo.web.calificationsRest.domain.models.UserModel;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -25,28 +27,36 @@ class DeleteUserServiceTest {
 
     private final DeleteUserPort deleteUserPort = mock(DeleteUserPort.class);
     private final GetUserByIdPort getUserByIdPort = mock(GetUserByIdPort.class);
+    private final EmailNotificationService emailNotificationService = mock(EmailNotificationService.class);
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     private final DeleteUserService service =
-            new DeleteUserService(deleteUserPort, getUserByIdPort, validator);
+            new DeleteUserService(deleteUserPort, getUserByIdPort, emailNotificationService, validator);
 
     @Test
     void executeDoesNothingWhenUserDoesNotExist() {
         final UserId userId = new UserId("user-1");
         when(getUserByIdPort.getById(userId)).thenReturn(Optional.empty());
 
-        service.execute(new DeleteUserCommand(userId.value()));
+        final var result = service.execute(new DeleteUserCommand(userId.value()));
 
+        assertThat(result.deleted()).isFalse();
+        assertThat(result.code()).isEqualTo("USER_NOT_FOUND");
         verify(deleteUserPort, never()).delete(userId);
+        verify(emailNotificationService, never()).notifyUserDeleted(org.mockito.ArgumentMatchers.any());
     }
 
     @Test
     void executeDeletesWhenUserExists() {
         final UserId userId = new UserId("user-1");
-        when(getUserByIdPort.getById(userId)).thenReturn(Optional.of(user(userId)));
+        final UserModel user = user(userId);
+        when(getUserByIdPort.getById(userId)).thenReturn(Optional.of(user));
 
-        service.execute(new DeleteUserCommand(userId.value()));
+        final var result = service.execute(new DeleteUserCommand(userId.value()));
 
+        assertThat(result.deleted()).isTrue();
+        assertThat(result.code()).isEqualTo("USER_DELETED");
         verify(deleteUserPort).delete(userId);
+        verify(emailNotificationService).notifyUserDeleted(user);
     }
 
     private static UserModel user(final UserId id) {

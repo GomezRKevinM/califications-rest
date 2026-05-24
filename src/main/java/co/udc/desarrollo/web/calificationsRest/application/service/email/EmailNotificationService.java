@@ -29,6 +29,8 @@ public class EmailNotificationService {
     private static final String TOKEN_PASSWORD = "password";
     private static final String TOKEN_ROLE     = "role";
     private static final String TOKEN_STATUS   = "status";
+    private static final String SUBJECT_DELETED =
+            "Tu cuenta ha sido eliminada - Gestion de Usuarios";
 
     private final EmailSenderPort emailSenderPort;
 
@@ -57,6 +59,18 @@ public class EmailNotificationService {
                                 TOKEN_ROLE,   user.getRole().name(),
                                 TOKEN_STATUS, user.getStatus().name()));
         final EmailDestinationModel destination = buildDestination(user, SUBJECT_UPDATED, body);
+        sendOrLog(destination);
+    }
+
+    public void notifyUserDeleted(final UserModel user) {
+        final String template = loadTemplate("user-deleted.html");
+        final String body =
+                renderTemplate(
+                        template,
+                        Map.of(
+                                TOKEN_NAME, user.getName().value(),
+                                TOKEN_EMAIL, user.getEmail().value()));
+        final EmailDestinationModel destination = buildDestination(user, SUBJECT_DELETED, body);
         sendOrLog(destination);
     }
 
