@@ -18,6 +18,7 @@ import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -42,6 +43,10 @@ public class UpdateUserService implements UpdateUserUseCase {
 
         final UserModel userToUpdate =
                 UserApplicationMapper.fromUpdateCommandToModel(command, current.getPassword());
+        if (hasSameState(current, command, userToUpdate)) {
+            return current;
+        }
+
         final UserModel updatedUser = updateUserPort.update(userToUpdate);
 
         emailNotificationService.notifyUserUpdated(updatedUser);
@@ -72,6 +77,24 @@ public class UpdateUserService implements UpdateUserUseCase {
                             }
                         }
                 );
+    }
+
+    private boolean hasSameState(
+            final UserModel current,
+            final UpdateUserCommand command,
+            final UserModel candidate) {
+        return current.getName().equals(candidate.getName())
+                && current.getEmail().equals(candidate.getEmail())
+                && current.getRole() == candidate.getRole()
+                && current.getStatus() == candidate.getStatus()
+                && hasSamePassword(current, command);
+    }
+
+    private boolean hasSamePassword(final UserModel current, final UpdateUserCommand command) {
+        if (Objects.isNull(command.password()) || command.password().isBlank()) {
+            return true;
+        }
+        return current.getPassword().verifyPlain(command.password());
     }
 
 }

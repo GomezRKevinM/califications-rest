@@ -98,8 +98,11 @@ public class EmailNotificationService {
         } catch (final EmailSenderException senderException) {
             log.log(
                     Level.WARNING,
-                    "[EmailNotificationService] No se pudo enviar correo a: {0}. Causa: {1}",
-                    new Object[] {destination.getDestinationEmail(), senderException.getMessage()});
+                    String.format(
+                            "[EmailNotificationService] No se pudo enviar correo a: %s. Causa: %s",
+                            destination.getDestinationEmail().value(),
+                            senderException.getMessage()),
+                    senderException);
         }
     }
 

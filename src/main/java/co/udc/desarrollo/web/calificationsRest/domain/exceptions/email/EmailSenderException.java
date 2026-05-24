@@ -16,9 +16,10 @@ public final class EmailSenderException extends DomainException {
     }
 
     public static EmailSenderException becauseSmtpFailed(
-            final String destinationEmail, final String smtpError) {
+            final String destinationEmail, final Throwable cause) {
         return new EmailSenderException(
-                String.format(MESSAGE_WITH_DETAIL, destinationEmail, smtpError));
+                String.format(MESSAGE_WITH_DETAIL, destinationEmail, cause.getMessage()),
+                cause);
     }
 
     public static EmailSenderException becauseSendFailed(final Throwable cause) {

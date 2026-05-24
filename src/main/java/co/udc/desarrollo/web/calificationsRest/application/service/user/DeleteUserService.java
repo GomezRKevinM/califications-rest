@@ -5,7 +5,6 @@ import co.udc.desarrollo.web.calificationsRest.application.port.out.user.DeleteU
 import co.udc.desarrollo.web.calificationsRest.application.port.out.user.GetUserByIdPort;
 import co.udc.desarrollo.web.calificationsRest.application.service.dto.command.user.DeleteUserCommand;
 import co.udc.desarrollo.web.calificationsRest.application.service.mapper.UserApplicationMapper;
-import co.udc.desarrollo.web.calificationsRest.domain.exceptions.user.UserNotFoundException;
 import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserId;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -28,8 +27,9 @@ public class DeleteUserService implements DeleteUserUseCase {
         validateCommand(command);
 
         final UserId userId = UserApplicationMapper.fromDeleteCommandToUserId(command);
-        ensureUserExists(userId);
-        deleteUserPort.delete(userId);
+        getUserByIdPort
+                .getById(userId)
+                .ifPresent(ignored -> deleteUserPort.delete(userId));
     }
 
     private void validateCommand(final DeleteUserCommand command) {
@@ -37,12 +37,6 @@ public class DeleteUserService implements DeleteUserUseCase {
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);
         }
-    }
-
-    private void ensureUserExists(final UserId userId) {
-        getUserByIdPort
-                .getById(userId)
-                .orElseThrow(() -> UserNotFoundException.becauseIdWasNotFound(userId.value()));
     }
 
 }
