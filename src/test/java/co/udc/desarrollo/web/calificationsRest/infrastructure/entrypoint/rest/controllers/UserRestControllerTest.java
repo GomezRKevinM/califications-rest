@@ -14,9 +14,9 @@ import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserEmai
 import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserId;
 import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserName;
 import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserPassword;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.CreateUserRequest;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.LoginRequest;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UpdateUserRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user.CreateUserRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.auth.LoginRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user.UpdateUserRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

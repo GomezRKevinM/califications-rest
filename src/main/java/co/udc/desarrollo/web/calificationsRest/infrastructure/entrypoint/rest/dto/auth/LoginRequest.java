@@ -1,4 +1,4 @@
-package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto;
+package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto;
+package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user;
 
 public record UserResponse(
     String id,
