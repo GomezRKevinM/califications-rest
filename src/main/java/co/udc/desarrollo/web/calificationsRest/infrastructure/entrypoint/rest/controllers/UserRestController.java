@@ -2,11 +2,11 @@ package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.c
 
 import co.udc.desarrollo.web.calificationsRest.application.port.in.auth.LoginUseCase;
 import co.udc.desarrollo.web.calificationsRest.application.port.in.user.*;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.CreateUserRequest;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.DeleteUserResponse;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.LoginRequest;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UpdateUserRequest;
-import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.UserResponse;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user.CreateUserRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user.DeleteUserResponse;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.auth.LoginRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user.UpdateUserRequest;
+import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.user.UserResponse;
 import co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.mapper.UserRestMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
