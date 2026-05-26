@@ -1,6 +1,5 @@
 package co.udc.desarrollo.web.calificationsRest.infrastructure.entrypoint.rest.dto.student;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
