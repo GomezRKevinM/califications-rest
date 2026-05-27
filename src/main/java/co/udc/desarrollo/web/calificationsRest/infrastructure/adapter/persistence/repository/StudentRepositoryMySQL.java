@@ -59,15 +59,8 @@ public class StudentRepositoryMySQL implements SaveStudentPort,
         return null;
     }
 
-    @Override
-    public void delete(StudentId studentId) {
-        try (final PreparedStatement statement = connection.prepareStatement(SQL_DELETE)) {
-            statement.setString(1, studentId.value());
-            statement.executeUpdate();
-        } catch (final SQLException exception) {
-            throw StudentPersistenceException.becauseDeleteFailed(studentId.value(), exception);
-        }
-    }
+
+
 
     @Override
     public List<StudentModel> getAll() {
@@ -125,5 +118,15 @@ public class StudentRepositoryMySQL implements SaveStudentPort,
     private StudentModel findByIdOrFail(final StudentId studentId) {
         return getById(studentId)
                 .orElseThrow(() -> StudentNotFoundException.becauseIdWasNotFound(studentId.value()));
+    }
+
+    @Override
+    public void delete(StudentId id) {
+        try (final PreparedStatement statement = connection.prepareStatement(SQL_DELETE)) {
+            statement.setString(1, id.value());
+            statement.executeUpdate();
+        } catch (final SQLException exception) {
+            throw StudentPersistenceException.becauseDeleteFailed(id.value(), exception);
+        }
     }
 }
