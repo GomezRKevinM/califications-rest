@@ -1,4 +1,4 @@
-package co.udc.desarrollo.web.calificationsRest.application.service.dto.result.user;
+package co.udc.desarrollo.web.calificationsRest.application.service.dto.result.student;
 
 public record DeleteStudentResult(
         boolean deleted,

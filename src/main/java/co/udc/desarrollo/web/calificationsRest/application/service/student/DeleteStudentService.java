@@ -4,13 +4,10 @@ import co.udc.desarrollo.web.calificationsRest.application.port.in.student.Delet
 import co.udc.desarrollo.web.calificationsRest.application.port.out.student.DeleteStudentPort;
 import co.udc.desarrollo.web.calificationsRest.application.port.out.student.GetStudentByIdPort;
 import co.udc.desarrollo.web.calificationsRest.application.service.dto.command.student.DeleteStudentCommand;
-import co.udc.desarrollo.web.calificationsRest.application.service.dto.result.user.DeleteStudentResult;
-import co.udc.desarrollo.web.calificationsRest.application.service.dto.result.user.DeleteUserResult;
+import co.udc.desarrollo.web.calificationsRest.application.service.dto.result.student.DeleteStudentResult;
 import co.udc.desarrollo.web.calificationsRest.application.service.mapper.StudentApplicationMapper;
 import co.udc.desarrollo.web.calificationsRest.domain.models.StudentModel;
-import co.udc.desarrollo.web.calificationsRest.domain.models.UserModel;
 import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.student.StudentId;
-import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.user.UserId;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
@@ -45,7 +42,7 @@ public class DeleteStudentService implements DeleteStudentUseCase {
     }
 
     private DeleteStudentResult deleteExistingStudent(final StudentId studentId, final StudentModel student) {
-        deletePort.delete(new DeleteStudentCommand(studentId.value()));
+        deletePort.delete(studentId);
 
         return DeleteStudentResult.deleted(studentId.value());
     }
