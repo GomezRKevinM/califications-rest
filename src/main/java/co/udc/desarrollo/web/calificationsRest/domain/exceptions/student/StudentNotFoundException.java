@@ -10,7 +10,7 @@ public final class StudentNotFoundException extends DomainException {
         super(message);
     }
 
-    public static StudentNotFoundException becauseIdWasNotFound(final String userId) {
-        return new StudentNotFoundException(String.format(MESSAGE_BY_ID, userId));
+    public static StudentNotFoundException becauseIdWasNotFound(final String studentId) {
+        return new StudentNotFoundException(String.format(MESSAGE_BY_ID, studentId));
     }
 }
