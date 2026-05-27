@@ -15,8 +15,8 @@ public class StudentModel {
     StudentId id;
     StudentName name;
     StudentLastName lastName;
-    Timestamp created_at;
-    Timestamp update_at;
+    String created_at;
+    String update_at;
 
     public StudentModel(StudentId id, StudentName name, StudentLastName lastName) {
         this(id, name,lastName, null, null);
