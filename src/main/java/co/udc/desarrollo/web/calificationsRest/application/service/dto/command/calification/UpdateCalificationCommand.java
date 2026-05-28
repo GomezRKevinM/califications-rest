@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record UpdateCalificationCommand(
+        @NotBlank(message = "id no puede estar vacio") String id,
+
         @NotBlank(message = "Docente no puede estar vacío") String docente,
 
         @NotBlank(message = "Asignatura no puede estar vacía") String asignatura,

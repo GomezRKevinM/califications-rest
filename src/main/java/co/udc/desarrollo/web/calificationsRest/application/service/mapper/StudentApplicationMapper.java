@@ -10,7 +10,6 @@ import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.student.Stude
 import co.udc.desarrollo.web.calificationsRest.domain.valueObjects.student.StudentLastName;
 import lombok.experimental.UtilityClass;
 
-import java.util.Objects;
 import java.util.UUID;
 
 @UtilityClass
