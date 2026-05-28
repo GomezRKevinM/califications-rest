@@ -10,7 +10,7 @@ public class InvalidCalificationAsignatura extends DomainException {
         super(message);
     }
 
-    public InvalidCalificationAsignatura becauseIsEmpty() {
+    public static InvalidCalificationAsignatura becauseIsEmpty() {
         return new  InvalidCalificationAsignatura(EMPTY);
     }
 }

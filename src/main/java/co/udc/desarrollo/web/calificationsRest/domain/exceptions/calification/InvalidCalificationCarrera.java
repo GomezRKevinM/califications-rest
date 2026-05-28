@@ -8,7 +8,7 @@ public class InvalidCalificationCarrera extends RuntimeException {
         super(message);
     }
 
-    public InvalidCalificationCarrera becauseIsEmpty() {
+    public static InvalidCalificationCarrera becauseIsEmpty() {
         return new  InvalidCalificationCarrera(EMPTY);
     }
 }

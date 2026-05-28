@@ -11,11 +11,11 @@ public class InvalidCalificationUniversidad extends DomainException {
         super(message);
     }
 
-    public InvalidCalificationUniversidad becauseIsEmpty() {
+    public static InvalidCalificationUniversidad becauseIsEmpty() {
         return new InvalidCalificationUniversidad(EMPTY);
     }
 
-    public InvalidCalificationUniversidad isShort(final int min) {
+    public static InvalidCalificationUniversidad isShort(final int min) {
         return  new InvalidCalificationUniversidad(String.format(IS_SHORT, min));
     }
 }

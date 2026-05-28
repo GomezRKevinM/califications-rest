@@ -11,7 +11,7 @@ public class InvalidCalificationDocente extends DomainException {
         super(message);
     }
 
-    public InvalidCalificationDocente becauseIsEmpty(){
+    public static InvalidCalificationDocente becauseIsEmpty(){
         return new InvalidCalificationDocente(EMPTY);
     }
 }
