@@ -29,7 +29,7 @@ public final class CalificationCreatedDomainEvent extends DomainEvent {
                 "actividad_evaluada", calification.getActividadEvaluada().value(),
                 "porcentaje", calification.getPorcentaje().toString(),
                 "student_id", calification.getIdEstudiante().value(),
-                "nota", calification.getNota()
+                "nota", calification.getNota().toString()
         );
     }
 }
