@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-public class StudentUpdatedDomainEvent extends DomainEvent {
+public final class StudentUpdatedDomainEvent extends DomainEvent {
     private static final String EVENT_NAME = "student.updated";
 
     private final StudentModel student;
