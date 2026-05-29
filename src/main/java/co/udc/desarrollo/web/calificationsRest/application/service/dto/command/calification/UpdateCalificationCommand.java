@@ -24,9 +24,6 @@ public record UpdateCalificationCommand(
         @NotBlank(message = "Porcentaje no puede estar vacio")
         @Size(min = 0, max = 1, message = "porcentaje debe estar entre 0 y 1") double porcentaje,
 
-        @NotBlank(message = "el id del estudiante no puede estar vacio")
-        @Size( min = 15, message = "el tamaño del id debe ser de al menos 15 digitos") String studentId,
-
         @NotBlank(message = "Nota no debe estar vacia")
         @Size( min = 0, max = 5, message = "La nota debe estar entre 0 y 5") double nota
 ) {
