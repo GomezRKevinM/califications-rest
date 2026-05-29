@@ -56,7 +56,7 @@ public class StudentRepositoryMySQL implements SaveStudentPort,
     public StudentModel save(StudentModel student) {
         final StudentPersistenceDto dto = StudentPersistenceMapper.fromModelToDto(student);
         executeSave(dto);
-        return null;
+        return findByIdOrFail(student.getId());
     }
 
 
