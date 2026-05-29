@@ -6,12 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Value;
 
+import java.sql.Timestamp;
+
 @Value
 @AllArgsConstructor
 @Data
 public final class CalificationModel {
 
     CalificationId id;
+    Timestamp fecha;
     CalificationDocente docente;
     CalificationAsignatura asignatura;
     CalificationCarrera carrera;

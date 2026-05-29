@@ -1,6 +1,6 @@
 package co.udc.desarrollo.web.calificationsRest.infrastructure.adapter.persistence.dto.student;
 
-public final record StudentPersistenceDto(
+public record StudentPersistenceDto(
         String id,
         String name,
         String lastName,
